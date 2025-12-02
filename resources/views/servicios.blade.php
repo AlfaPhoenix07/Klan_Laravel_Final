@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLAN - Nuestros Servicios</title>
+
+    <!-- Framework Materialize para el diseño responsivo -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- CSS personalizado del proyecto -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- Librería de íconos de Google para Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Navbar responsivo de Materialize -->
+    <nav class="nav-wrapper">
+        <div class="container">
+            <a href="{{ url('/') }}" class="brand-logo">
+                <img src="{{ asset('img/KLAN2.png') }}" alt="logo" class="logo">
+            </a>
+
+            <a href="#" data-target="menu-responsive" class="sidenav-trigger right">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url('/') }}">Inicio</a></li>
+                <li><a href="{{ url('/about') }}">Sobre nosotros</a></li>
+                <li><a href="{{ url('/servicios') }}" style="color:darkviolet;">Nuestros servicios</a></li>
+                <li><a href="{{ url('/planes') }}">Planes</a></li>
+                <li><a href="{{ url('/preguntas') }}">Preguntas</a></li>
+                <li><a href="{{ url('/contact') }}">Únete</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Menú lateral (móviles) -->
+    <ul class="sidenav" id="menu-responsive">
+        <li><a href="{{ url('/') }}">Inicio</a></li>
+        <li><a href="{{ url('/about') }}">Sobre nosotros</a></li>
+        <li><a href="{{ url('/servicios') }}">Nuestros servicios</a></li>
+        <li><a href="{{ url('/planes') }}">Planes</a></li>
+        <li><a href="{{ url('/preguntas') }}">Preguntas</a></li>
+        <li><a href="{{ url('/contact') }}">Únete</a></li>
+    </ul>
+
+    <!-- Contenido principal de la página de servicios -->
+    <section id="servicios" class="container">
+        <div class="servicios-container">
+            <h2 class="center-align">Nuestros Servicios</h2>
+            <p class="center-align">En KLAN, ofrecemos una amplia gama de servicios para cubrir todas tus necesidades tecnológicas:</p>
+
+            <!-- Aquí uso el sistema de grid de Materialize -->
+            <div class="row servicios-grid">
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">01. Desarrollo de Software a Medida</span>
+                            <p>Creamos soluciones personalizadas que se adaptan a los procesos únicos de tu negocio. Desde sistemas de gestión hasta herramientas específicas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">02. Desarrollo de Aplicaciones Móviles</span>
+                            <p>Diseñamos y desarrollamos aplicaciones móviles intuitivas para iOS y Android, garantizando una experiencia de usuario excepcional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">03. Desarrollo de Aplicaciones Web</span>
+                            <p>Construimos aplicaciones web modernas, escalables y seguras, utilizando las últimas tecnologías para garantizar un rendimiento óptimo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">04. Consultoría Tecnológica</span>
+                            <p>Te ayudamos a identificar mejoras y a implementar soluciones tecnológicas que impulsen tu competitividad.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">05. Integración de Sistemas</span>
+                            <p>Conectamos tus sistemas existentes para mejorar la eficiencia y la comunicación entre diferentes áreas del negocio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6 l4">
+                    <div class="card small">
+                        <div class="card-content">
+                            <span class="card-title">06. Mantenimiento y Soporte</span>
+                            <p>Ofrecemos servicios de mantenimiento continuo y soporte técnico para garantizar que tus sistemas funcionen sin problemas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer original (no se modificó nada) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><b>KLAN</b></h3>
+                <p>Transformando ideas en soluciones tecnológicas innovadoras.</p>
+                <p>Tu socio confiable en desarrollo de software.</p>
+                <div class="links">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#servicios">Desarrollo Web</a></li>
+                    <li><a href="#servicios">Apps Móviles</a></li>
+                    <li><a href="#servicios">Software a Medida</a></li>
+                    <li><a href="#servicios">Consultoría</a></li>
+                    <li><a href="#servicios">Mantenimiento</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><img class="footer-icon" src="{{ asset('img/email-icon.png') }}" alt="email"> contacto@klan.com.mx</p>
+                <p><img class="footer-icon" src="{{ asset('img/telefono-icon.png') }}" alt="phone"> +52 (461) 123-4567</p>
+                <p><img class="footer-icon" src="{{ asset('img/ubicacion-icon.png') }}" alt="location"> Celaya, Guanajuato, México</p>
+                <p><img class="footer-icon" src="{{ asset('img/calendario-icon.png') }}" alt="date"> Lun - Vie: 9:00 AM - 6:00 PM</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Enlaces Útiles</h3>
+                <ul>
+                    <li><a href="{{ url('/about') }}">Sobre Nosotros</a></li>
+                    <li><a href="{{ url('/planes') }}">Nuestros Planes</a></li>
+                    <li><a href="{{ url('/contact') }}">Únete</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 KLAN. Todos los derechos reservados. | Sitio desarrollado por Cesar Martinez & Jose Leon</p>
+        </div>
+    </footer>
+
+    <!-- Script de Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Inicialización de componentes -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activa el menú lateral en móviles
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+
+            // Inicializa automáticamente cualquier otro componente
+            M.AutoInit();
+        });
+    </script>
+
+</body>
+</html>
