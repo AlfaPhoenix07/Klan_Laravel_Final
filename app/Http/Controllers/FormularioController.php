@@ -39,19 +39,20 @@ class FormularioController extends Controller
 
     // Guardar formulario de preguntas
     public function guardarPregunta(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'correo' => 'required|email|max:255',
-            'pregunta' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required',
+        'correo' => 'required|email',
+        'pregunta' => 'required'
+    ]);
 
-        Pregunta::create([
-            'nombre' => $request->nombre,
-            'correo' => $request->correo,
-            'pregunta' => $request->pregunta,
-        ]);
+    Pregunta::create([
+        'nombre' => $request->nombre,
+        'correo' => $request->correo,
+        'pregunta' => $request->pregunta,
+        'es_importante' => 0  // Por defecto no es importante
+    ]);
 
-        return back()->with('success', 'Tu pregunta se envió correctamente.');
-    }
+    return redirect()->back()->with('success', '¡Pregunta enviada correctamente! La revisaremos pronto.');
+}
 }

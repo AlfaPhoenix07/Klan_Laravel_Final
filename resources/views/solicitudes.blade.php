@@ -101,7 +101,7 @@
         <br>
         <a href="{{ url('/admin') }}"><i class="material-icons left">dashboard</i>Dashboard</a>
         <a href="{{ url('/solicitudes') }}" class="active"><i class="material-icons left">assignment</i>Solicitudes</a>
-        <a href="#"><i class="material-icons left">help</i>Preguntas</a>
+        <a href="{{ route('admin.preguntas') }}"><i class="material-icons left">help</i>Preguntas</a>
         <a href="{{ url('/') }}"><i class="material-icons left">logout</i>Salir</a>
     </div>
 
@@ -113,7 +113,7 @@
             <span class="dashboard-title">Solicitudes</span>
         </div>
 
-        <div class="container" style="margin-top:30px;">
+        <div class="container" style="margin-top:30px; width: 100%;">
 
             <div class="card">
                 <div class="card-content">
@@ -138,7 +138,7 @@
                         @foreach($solicitudes as $sol)
                         <tr>
                             <td>{{ $sol->nombre }}</td>
-                            <td>{{ $sol->email }}</td>
+                            <td>{{ $sol->correo }}</td>
                             <td>{{ $sol->telefono }}</td>
 
                             <td>

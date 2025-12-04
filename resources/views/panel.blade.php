@@ -12,6 +12,7 @@
             margin: 0;
         }
 
+
         /* Sidebar */
         .sidebar {
             height: 100vh;
@@ -87,12 +88,6 @@
             margin-bottom: 20px;
         }
 
-        /* Colores para diferentes métricas */
-        .card-blue .metric-number { color: #2196F3; }
-        .card-green .metric-number { color: #4CAF50; }
-        .card-orange .metric-number { color: #FF9800; }
-        .card-red .metric-number { color: #F44336; }
-        .card-purple .metric-number { color: #9C27B0; }
     </style>
 
 </head>
@@ -106,8 +101,8 @@
         <br>
         <a href="#" class="active"><i class="material-icons left">dashboard</i>Dashboard</a>
         <a href="{{ url('/solicitudes') }}"><i class="material-icons left">assignment</i>Solicitudes</a>
-        <a href="#"><i class="material-icons left">help</i>Preguntas</a>
-        <a href="#"><i class="material-icons left">logout</i>Salir</a>
+        <a href="{{ route('admin.preguntas') }}"><i class="material-icons left">help</i>Preguntas</a>
+        <a href="{{ url('/') }}"><i class="material-icons left">logout</i>Salir</a>
     </div>
 
     <!-- Contenido -->
@@ -119,7 +114,7 @@
         </div>
 
         <!-- Tarjetas -->
-        <div class="container" style="margin-top:30px;">
+        <div class="container" style="margin-top:30px; ">
 
             <!-- Primera fila: 3 tarjetas -->
             <div class="row card-row">

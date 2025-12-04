@@ -11,6 +11,46 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Estilos para las tarjetas de preguntas importantes */
+        .pregunta-card {
+            margin-bottom: 20px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .pregunta-card .card-content {
+            padding: 20px;
+        }
+
+        .pregunta-icon {
+            color: #ff9800;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .pregunta-titulo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #263238;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pregunta-autor {
+            font-size: 14px;
+            color: #607d8b;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .seccion-preguntas-usuarios {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
@@ -46,7 +86,7 @@
         <li><a href="{{ url('/contact') }}">Únete</a></li>
     </ul>
 
-    <!-- Preguntas frecuentes -->
+    <!-- Preguntas frecuentes (estáticas con collapsible) -->
     <section id="faq" class="container">
         <h2 class="center-align">Resolvemos tus dudas</h2>
         <ul class="collapsible">
@@ -71,17 +111,59 @@
             <li>
                 <div class="collapsible-header"><i class="material-icons">contact_mail</i>¿Cómo puedo contratar un servicio?</div>
                 <div class="collapsible-body blue lighten-1 white-text">
-                    <p>Completa el formulario en la sección de <a href="{{ url('/contact') }}">Contacto</a> y nos pondremos en comunicación contigo.</p>
+                    <p>Completa el formulario en la sección de <a href="{{ url('/contact') }}" style="color: white; text-decoration: underline;">Contacto</a> y nos pondremos en comunicación contigo.</p>
                 </div>
             </li>
         </ul>
     </section>
+
+    <!-- Nueva sección: Preguntas de la comunidad (tarjetas dinámicas) -->
+    @if($preguntasFrecuentes->count() > 0)
+    <section class="seccion-preguntas-usuarios">
+        <div class="container">
+            <h2 class="center-align">Preguntas destacadas de nuestra comunidad</h2>
+            <p class="center-align grey-text">Preguntas importantes de nuestros usuarios que pueden ayudarte</p>
+            
+            <div class="row" style="margin-top: 30px;">
+                @foreach($preguntasFrecuentes as $pregunta)
+                <div class="col s12 m6 l4">
+                    <div class="card pregunta-card">
+                        <div class="card-content">
+                            <div class="pregunta-titulo">
+                                <i class="material-icons pregunta-icon">star</i>
+                                <span>Pregunta destacada</span>
+                            </div>
+                            <p style="font-size: 16px; line-height: 1.6; color: #37474f;">
+                                {{ $pregunta->pregunta }}
+                            </p>
+                            <p class="pregunta-autor">
+                                <i class="material-icons tiny" style="vertical-align: middle;">person</i>
+                                Pregunta de {{ $pregunta->nombre }}
+                            </p>
+                            <p class="pregunta-autor">
+                                <i class="material-icons tiny" style="vertical-align: middle;">date_range</i>
+                                {{ $pregunta->created_at->format('d/m/Y') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
 
     <!-- Formulario -->
     <section id="nueva-pregunta" class="container">
         <div class="contact-container">
             <h2 class="center-align">¿Tienes otra pregunta?</h2>
             <p class="center-align">Envíanos tu duda y la responderemos lo antes posible.</p>
+
+            @if(session('success'))
+                <div class="card-panel green lighten-4 green-text text-darken-4 center-align">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <form class="formulario" action="{{ route('pregunta.guardar') }}" method="POST">
                 @csrf
