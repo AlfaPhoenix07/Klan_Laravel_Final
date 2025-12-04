@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('correo');
             $table->string('pdf')->nullable(); // ruta del archivo
+            $table->string('estatus');
             $table->timestamps();
         });
     }

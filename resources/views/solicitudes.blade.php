@@ -122,63 +122,115 @@
                     <p>Panel solo para ADMINISTRADORES.</p>
 
                     <table class="highlight responsive-table" style="margin-top:20px;">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-            <th>CV</th>
-            <th>Estatus</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>CV</th>
+                                    <th>Estatus</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
 
-    <tbody>
+                            <tbody>
 
-@foreach($solicitudes as $sol)
-<tr>
-    <td>{{ $sol->nombre }}</td>
-    <td>{{ $sol->email }}</td>
-    <td>{{ $sol->telefono }}</td>
+                        @foreach($solicitudes as $sol)
+                        <tr>
+                            <td>{{ $sol->nombre }}</td>
+                            <td>{{ $sol->email }}</td>
+                            <td>{{ $sol->telefono }}</td>
 
-    <td>
-        <a href="{{ asset('storage/' . $sol->pdf) }}" target="_blank">Ver CV</a>
-            
-    </td>
+                            <td>
+                                <a href="{{ asset('storage/' . $sol->pdf) }}" target="_blank">Ver CV</a>
+                                    
+                            </td>
 
-    <td>
-        @if($sol->estatus == 'pendiente')
-            <span class="status-badge pending">Pendiente</span>
-        @elseif($sol->estatus == 'aceptado')
-            <span class="status-badge accepted">Aceptado</span>
-        @else
-            <span class="status-badge rejected">Rechazado</span>
-        @endif
-    </td>
+                            <td>
+                                @if($sol->estatus == 'pendiente')
+                                    <span class="status-badge pending">Pendiente</span>
+                                @elseif($sol->estatus == 'aceptado')
+                                    <span class="status-badge accepted">Aceptado</span>
+                                @else
+                                    <span class="status-badge rejected">Rechazado</span>
+                                @endif
+                            </td>
 
-    <td>
-    <a href="{{ route('solicitudes.aceptar', $sol->id) }}" class="btn-small green">✓</a>
-    <a href="{{ route('solicitudes.rechazar', $sol->id) }}" class="btn-small red">X</a>
-</td>
+                            <td>
+                            <a href="{{ route('solicitudes.aceptar', $sol->id) }}" class="btn-small green">✓</a>
+                            <a href="{{ route('solicitudes.rechazar', $sol->id) }}" class="btn-small red">X</a>
+                            <!-- Formulario para eliminar: lo dejamos con display:none porque usaremos el modal -->
+                            <form method="POST" action="{{ route('solicitudes.destroy', $sol->id) }}" class="delete-form" id="delete-form-{{ $sol->id }}" style="display:none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
 
-</tr>
-@endforeach
+                            <!-- Botón que abre el modal -->
+                            <a href="#confirm-delete" data-id="{{ $sol->id }}" class="btn-small grey darken-1 modal-trigger btn-delete">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
 
-</tbody>
+                        </tr>
+                        @endforeach
 
-</table>
+                        </tbody>
 
-
+                    </table>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </body>
+<!-- Modal confirmación -->
+<div id="confirm-delete" class="modal">
+  <div class="modal-content">
+    <h5>Confirmar eliminación</h5>
+    <p>¿Estás seguro que quieres eliminar este candidato? Esta acción no se puede deshacer.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn-flat">Cancelar</a>
+    <button id="confirm-delete-btn" class="btn red">Eliminar</button>
+  </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar modales Materialize
+    var elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems);
+
+    const modalElem = document.getElementById('confirm-delete');
+    const modalInstance = M.Modal.getInstance(modalElem) || M.Modal.init(modalElem);
+
+    let currentDeleteId = null;
+
+    // Cuando se hace click en un boton .btn-delete guardamos el id y abrimos modal
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentDeleteId = this.getAttribute('data-id');
+            modalInstance.open();
+        });
+    });
+
+    // Botón confirmar dentro del modal: envía el formulario
+    document.getElementById('confirm-delete-btn').addEventListener('click', function() {
+        if (!currentDeleteId) return;
+
+        const form = document.getElementById('delete-form-' + currentDeleteId);
+        if (!form) return;
+
+        // enviar formulario normal (recarga)
+        form.submit();
+
+        modalInstance.close();
+    });
+
+});
+</script>
+</div>
 </html>

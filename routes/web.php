@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormularioController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\DashboardController;
 
 // Página principal
 Route::get('/', function () {
@@ -10,9 +11,7 @@ Route::get('/', function () {
 });
 
 // Páginas del sitio
-Route::get('/admin', function () {
-    return view('panel');
-});
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 // Mostrar solicitudes
 Route::get('/solicitudes', [SolicitudController::class, 'index'])->name('solicitudes');
@@ -23,6 +22,8 @@ Route::get('/solicitudes/aceptar/{id}', [SolicitudController::class, 'aceptar'])
 // Rechazar soli
 Route::get('/solicitudes/rechazar/{id}', [SolicitudController::class, 'rechazar'])->name('solicitudes.rechazar');
 
+// Eliminar (destruir)
+Route::delete('/solicitudes/{id}', [SolicitudController::class, 'destroy'])->name('solicitudes.destroy');
 
 Route::get('/about', function () {
     return view('about');

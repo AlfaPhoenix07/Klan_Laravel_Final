@@ -37,4 +37,20 @@ class SolicitudController extends Controller
 
         return redirect()->back();
     }
+
+    //Destruir registro de candidato
+    public function destroy($id)
+    {
+        $solicitud = Contacto::findOrFail($id);
+
+        //Eliminar pdf fisico
+        if ($solicitud->pdf && \Storage::disk('public')->exists($solicitud->pdf)) {
+            \Storage::disk('public')->delete($solicitud->pdf);
+        }
+
+        $solicitud->delete();
+
+        return redirect()->back()->with('success', 'Candidato eliminado correctamente.');
+    }
+
 }
