@@ -58,7 +58,7 @@
         <a class="dashboard-title" style="color:white;">Admin</a>
         <br>
         <a href="#" class="active"><i class="material-icons left">dashboard</i>Dashboard</a>
-        <a href="#"><i class="material-icons left">assignment</i>Solicitudes</a>
+        <a href="{{ url('/solicitudes') }}"><i class="material-icons left">assignment</i>Solicitudes</a>
         <a href="#"><i class="material-icons left">help</i>Preguntas</a>
         <a href="#"><i class="material-icons left">logout</i>Salir</a>
     </div>

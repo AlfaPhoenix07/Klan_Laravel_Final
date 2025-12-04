@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormularioController;
+use App\Http\Controllers\SolicitudController;
 
 // Página principal
 Route::get('/', function () {
@@ -12,6 +13,16 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('panel');
 });
+
+// Mostrar solicitudes
+Route::get('/solicitudes', [SolicitudController::class, 'index'])->name('solicitudes');
+
+// Aceptar soli
+Route::get('/solicitudes/aceptar/{id}', [SolicitudController::class, 'aceptar'])->name('solicitudes.aceptar');
+
+// Rechazar soli
+Route::get('/solicitudes/rechazar/{id}', [SolicitudController::class, 'rechazar'])->name('solicitudes.rechazar');
+
 
 Route::get('/about', function () {
     return view('about');

@@ -16,6 +16,7 @@ class Contacto extends Model
         'nombre',
         'telefono',
         'correo',
-        'pdf'
+        'pdf',
+        'estatus'
     ];
 }
