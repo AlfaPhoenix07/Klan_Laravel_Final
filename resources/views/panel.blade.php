@@ -142,7 +142,12 @@
                     <div class="card z-depth-1 metric-card">
                         <div class="card-content">
                             <span class="card-title">Aceptados este mes</span>
-                            <p>Solicitudes aprobadas.</p>
+                            <h4 class="valign-wrapper" style="margin-top:10px;">
+                                {{ $aceptadosMes }}
+                                <span style="margin-left:10px; color:#4caf50; font-weight:600;">✔</span>
+                            </h4>
+                            <p class="grey-text">Solicitudes aceptadas entre {{ \Carbon\Carbon::now()->startOfMonth()->format('j M') }}
+                                y {{ \Carbon\Carbon::now()->endOfMonth()->format('j M') }}.</p>
                         </div>
                     </div>
                 </div>
