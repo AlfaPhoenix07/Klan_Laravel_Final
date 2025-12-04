@@ -9,6 +9,10 @@ Route::get('/', function () {
 });
 
 // Páginas del sitio
+Route::get('/admin', function () {
+    return view('panel');
+});
+
 Route::get('/about', function () {
     return view('about');
 });
